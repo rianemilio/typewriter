@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { Desk } from './components/Desk/Desk';
+import { useTypewriterSound } from './hooks/useTypewriterSound';
 
 export function App() {
-  const [soundOn, setSoundOn] = useState(true);
+  const sound = useTypewriterSound();
 
-  return <Desk soundOn={soundOn} onToggleSound={() => setSoundOn((on) => !on)} onSurfaceClick={() => {}} />;
+  return <Desk soundOn={sound.enabled} onToggleSound={sound.toggle} onSurfaceClick={() => {}} />;
 }
