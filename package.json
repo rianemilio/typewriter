@@ -2,6 +2,17 @@
   "name": "typewriter",
   "private": true,
   "version": "0.1.0",
+  "description": "A login form typed on a vintage typewriter, with rubber-stamp verdicts and synthesized sounds.",
+  "license": "MIT",
+  "author": "Rian Emilio",
+  "homepage": "https://rianemilio.github.io/typewriter/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rianemilio/typewriter.git"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
