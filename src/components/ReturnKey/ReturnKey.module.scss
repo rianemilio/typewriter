@@ -1,0 +1,34 @@
+@use '../../styles' as *;
+
+.key {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  margin-top: 8px;
+  padding: 4px;
+  border-radius: 34px;
+  @include chrome(key);
+  @include key-cap(raised);
+  transition: transform 70ms ease-out, box-shadow 70ms ease-out;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active,
+  &.pressed {
+    @include key-cap(pressed);
+  }
+
+  &:focus-visible {
+    outline-offset: 6px;
+  }
+}
+
+.cap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 184px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 30px;
+  @include key-cap(face);
+}

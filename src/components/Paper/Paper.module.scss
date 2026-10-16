@@ -1,0 +1,94 @@
+@use '../../styles' as *;
+
+@include strike-keyframes;
+@include blink-keyframes;
+
+.feed {
+  position: absolute;
+  left: -40vw;
+  right: -40vw;
+  top: -140vh;
+  bottom: 46px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.anchor {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  width: 0;
+  height: 0;
+}
+
+// Geometry (top padding, bottom padding, min-height) mirrors machine.ts
+.paper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(440px, 84vw);
+  min-height: 1150px;
+  padding: 52px clamp(20px, 6vw, 46px) 240px;
+  transform: translate(-50%, 110px);
+  pointer-events: auto;
+  cursor: text;
+  @include paper-texture;
+}
+
+.line {
+  height: $line-height;
+  line-height: $line-height;
+  font-size: $font-size;
+  white-space: pre;
+  color: $ink;
+
+  @media (max-width: $bp-phone) {
+    font-size: $font-size-narrow;
+  }
+}
+
+.title,
+.rule {
+  text-align: center;
+  letter-spacing: 0.18em;
+}
+
+.title {
+  font-weight: 700;
+}
+
+// --dy, --r and --o are rolled per character when it is typed
+.ch {
+  display: inline-block;
+  opacity: var(--o, 1);
+  transform: translateY(var(--dy, 0)) rotate(var(--r, 0deg));
+  text-shadow: 0 0 0.7px rgba($ink, 0.55);
+}
+
+.pending {
+  visibility: hidden;
+}
+
+.struck {
+  animation: strike 120ms ease-out;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+.caret {
+  display: inline-block;
+  color: $ink;
+  opacity: 0.5;
+  animation: blink 1s steps(1) infinite;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+.caretHidden {
+  visibility: hidden;
+}
