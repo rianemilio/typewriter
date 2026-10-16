@@ -1,0 +1,26 @@
+// Palette — the scene is always lit by a single warm desk lamp at night.
+$desk: #1a110b;
+$desk-deep: #0f0906;
+$desk-top: #24170f;
+$paper: #e7dbbd;
+$ink: #221c17;
+$stamp-red: #a6261d;
+$stamp-green: #2e6b3f;
+$cream: #efe4c8;
+$gold: #c9a45c;
+
+// Lamp light is layered at many strengths, so it is exposed as a function.
+@function lamp($alpha) {
+  @return rgba(255, 168, 88, $alpha);
+}
+
+// Type
+$font-stack: 'Courier Prime', 'Courier New', Courier, monospace;
+$font-size: 17px;
+$font-size-narrow: 15.5px;
+// Keep in sync with LINE_HEIGHT in components/Typewriter/machine.ts
+$line-height: 30px;
+
+// Breakpoints
+$bp-tablet: 900px;
+$bp-phone: 560px;

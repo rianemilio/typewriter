@@ -1,0 +1,53 @@
+@use 'index' as *;
+
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: $desk;
+  color: $cream;
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid lamp(0.9);
+  outline-offset: 3px;
+}
+
+// prefers-reduced-motion is handled with the reduced-motion() mixin next to
+// each animated class: CSS module class names are hashed, so they can't be
+// targeted from this global sheet.

@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Polished nickel. Each part catches the light a little differently.
+$_chrome-finishes: (
+  bail: (#f4f0e9, #8f897f 50%, #d9d3c9 70%, #5d5851),
+  hub: (#f2eee7, #8e877d 45%, #d8d2c8 62%, #5b554e),
+  lever: (#f3efe8, #9b958c 45%, #e6e1d8 62%, #6b665f),
+  key: (#f2eee7, #8e877d 42%, #d8d2c8 62%, #5b554e),
+);
+
+@mixin chrome($finish: hub) {
+  $stops: map.get($_chrome-finishes, $finish);
+  @if not $stops {
+    @error "Unknown chrome finish: #{$finish}";
+  }
+  background: linear-gradient(180deg, $stops...);
+}
+
+@mixin black-rubber($part: roller) {
+  @if $part == roller {
+    background:
+      linear-gradient(90deg, lamp(0.1), transparent 45%, rgba(0, 0, 0, 0.25)),
+      linear-gradient(180deg, #000 0%, #1b1a19 10%, #4a4642 22%, #2a2826 31%, #0e0d0c 52%, #050505 74%, #151312 90%, #000 100%);
+  } @else if $part == knob {
+    background:
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 2px, rgba(0, 0, 0, 0.35) 2px 5px),
+      linear-gradient(180deg, #000, #3b3733 22%, #1a1816 50%, #050505 80%, #1d1b19);
+  } @else if $part == grip {
+    background: linear-gradient(180deg, #2b2826, #050505 60%, #1a1817);
+  } @else {
+    @error "Unknown rubber part: #{$part}";
+  }
+}
+
+@mixin brass {
+  background: linear-gradient(180deg, #e2c27f, #a98345 55%, #c9a660);
+  box-shadow: inset 0 1px 0 rgba(255, 245, 210, 0.6), 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+// Aged typing paper: lamp hotspot, coffee ring, foxing, darker edges and grain.
+@mixin paper-texture {
+  background:
+    radial-gradient(ellipse 85% 38% at 25% 0%, rgba(255, 244, 215, 0.55), transparent 70%),
+    radial-gradient(circle at 80% 22%, transparent 0 44px, rgba(140, 92, 40, 0.1) 46px 51px, transparent 54px),
+    radial-gradient(ellipse 40% 25% at 15% 70%, rgba(160, 115, 55, 0.1), transparent 70%),
+    linear-gradient(90deg, rgba(150, 110, 60, 0.14), transparent 7%, transparent 93%, rgba(150, 110, 60, 0.14)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .31  0 0 0 0 .18  0 0 0 .32 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    $paper;
+  box-shadow:
+    0 0 0 1px rgba(90, 60, 30, 0.14),
+    0 20px 44px rgba(0, 0, 0, 0.55),
+    inset 0 0 60px rgba(140, 100, 50, 0.22);
+}
+
+// $variant: raised | pressed (key travel) or face (the dark cap itself)
+@mixin key-cap($variant: face) {
+  @if $variant == raised {
+    transform: translateY(0);
+    box-shadow: 0 7px 0 #1d1916, 0 8px 0 1px #050404, 0 16px 20px rgba(0, 0, 0, 0.75);
+  } @else if $variant == pressed {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #1d1916, 0 3px 0 1px #050404, 0 6px 10px rgba(0, 0, 0, 0.7);
+  } @else if $variant == face {
+    background: radial-gradient(ellipse 90% 70% at 38% 20%, #433c36, #15110f 58%, #080606);
+    box-shadow: inset 0 2px 1px rgba(255, 235, 210, 0.22), inset 0 -4px 8px rgba(0, 0, 0, 0.8);
+    color: $cream;
+    font-family: $font-stack;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 0 #000;
+  } @else {
+    @error "Unknown key-cap variant: #{$variant}";
+  }
+}
+
+// Rubber stamp impression. Relies on the #worn SVG filter rendered by <WornInkFilter>.
+@mixin stamp-base($color) {
+  color: $color;
+  padding: 8px 18px 6px;
+  border: 5px solid currentColor;
+  border-radius: 8px;
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  font-family: $font-stack;
+  font-size: clamp(30px, 8vw, 46px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  opacity: 0.84;
+  mix-blend-mode: multiply;
+  filter: url(#worn);
+}

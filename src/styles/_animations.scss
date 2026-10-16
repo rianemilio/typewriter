@@ -1,0 +1,58 @@
+// Keyframes are wrapped in mixins so each CSS module only emits the ones it uses.
+
+@mixin strike-keyframes {
+  @keyframes strike {
+    from {
+      opacity: 0;
+      transform: translateY(calc(var(--dy, 0px) - 1px)) scale(1.2);
+      filter: blur(0.6px);
+    }
+  }
+}
+
+@mixin blink-keyframes {
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@mixin slam-keyframes {
+  @keyframes slam {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(calc(var(--rot) + 10deg)) scale(2.3);
+    }
+    55% {
+      opacity: 0.9;
+      transform: translate(-50%, -50%) rotate(var(--rot)) scale(0.93);
+    }
+    75% {
+      transform: translate(-50%, -50%) rotate(calc(var(--rot) - 1deg)) scale(1.03);
+    }
+    100% {
+      opacity: 0.84;
+      transform: translate(-50%, -50%) rotate(var(--rot)) scale(1);
+    }
+  }
+}
+
+@mixin thud-keyframes {
+  @keyframes thud {
+    30% {
+      transform: translateY(3px);
+    }
+    65% {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+@mixin lever-pull-keyframes {
+  @keyframes pull {
+    35% {
+      transform: rotate(-32deg) translateX(-4px);
+    }
+  }
+}
