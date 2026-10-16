@@ -1,5 +1,11 @@
 # Typewriter login
 
+**English** · [Português](README.pt-BR.md)
+
+**[Live demo](https://rianemilio.github.io/typewriter/)**
+
+![The typewriter after a denied and a granted attempt](docs/preview.png)
+
 A login form typed on a vintage typewriter. The machine types the form header,
 you type your login and password on the sheet, and the result comes down as a
 rubber stamp: **DENIED** feeds the paper up for another attempt, **ACCESS GRANTED**
@@ -7,7 +13,7 @@ lets you eject the sheet and start over.
 
 Built with React 18, TypeScript, Vite and SCSS modules. Every visual is CSS
 gradients, shadows and inline SVG, and every sound is synthesized with the Web
-Audio API. There are no image or audio assets.
+Audio API. The app ships no image or audio files.
 
 ## Running
 
