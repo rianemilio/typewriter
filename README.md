@@ -20,6 +20,9 @@ npm run build    # type-check and production build into dist/
 npm run preview  # serve the production build
 ```
 
+Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`
+(enable it once in *Settings → Pages → Source: GitHub Actions*).
+
 Demo credentials: `typist` / `carbon` (also written on the card on the desk).
 
 ## Plugging in a real authentication API
